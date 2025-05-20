@@ -1,0 +1,5 @@
+Position: (497, 454), (1078, 538) - Texte: 15 47 5 8 1 1 0 8
+Position: (648, 244), (973, 320) - Texte: Abd. Al.
+Position: (527, 1127), (963, 1241) - Texte: El aboli jana
+Position: (592, 320), (1077, 397) - Texte: 06533816
+Position: (877, 528), (1154, 621) - Texte: 19 18

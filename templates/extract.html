@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Image Tool</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-100 to-white min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-gray-800">MediTrust</h1>
+    <nav>
+      <a href="/" class="text-blue-600 font-medium hover:underline">Home</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center p-6">
+    <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-lg text-center transition-all">
+      <h2 class="text-xl font-semibold mb-6 text-gray-700">Upload an image to get started</h2>
+
+      <!-- Flask form POST to /extract -->
+      <form method="POST" enctype="multipart/form-data">
+        <input
+          type="file"
+          name="document"
+          accept="image/*"
+          required
+          class="block w-full text-sm text-gray-500
+                 file:mr-4 file:py-2 file:px-4
+                 file:rounded-xl file:border-0
+                 file:text-sm file:font-semibold
+                 file:bg-blue-100 file:text-blue-800
+                 hover:file:bg-blue-200 mb-5"
+        />
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition">Submit</button>
+      </form>
+
+      <!-- Résultat après soumission -->
+      {% if image %}
+        <div class="mt-8">
+          <h3 class="text-lg font-medium mb-2 text-gray-600">Résultat :</h3>
+          <img src="{{ url_for('static', filename=image.split('static/')[-1]) }}" alt="Image traitée"
+               class="w-full max-h-64 object-contain rounded-xl shadow-md mx-auto mb-4"/>
+
+          {% if text_file %}
+            <a href="{{ url_for('static', filename=text_file.split('static/')[-1]) }}"
+               class="text-sm text-blue-600 hover:underline" download>Télécharger texte extrait</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-gray-500 text-sm py-4">
+    &copy; 2025 Extract data | Meditrust
+  </footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bulletins</title>
+</head>
+<body>
+<h1>Liste des bulletins</h1>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Numéro Bulletin</th>
+        <th>Temps</th>
+        <th>Image Initiale</th>
+        <th>Image Finale</th>
+    </tr>
+    {% for b in bulletins %}
+    <tr>
+        <td>{{ b.id }}</td>
+        <td>{{ b.bulletin_number }}</td>
+        <td>{{ b.time }}</td>
+        <td><img src="{{ url_for('uploaded_file', filename=b.image_initial) }}" width="150"></td>
+        <td><img src="{{ url_for('static', filename='results/' + b.image_final) }}" width="150"></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

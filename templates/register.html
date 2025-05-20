@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --accent-color: #4895ef;
+      --light-color: #f8f9fa;
+      --dark-color: #212529;
+      --success-color: #4cc9f0;
+      --error-color: #f72585;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      max-width: 1000px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .form-container {
+      flex: 1;
+      padding: 40px;
+      position: relative;
+    }
+
+    .illustration {
+      flex: 1;
+      background: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px;
+      color: white;
+      position: relative;
+    }
+
+    .illustration::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(67, 97, 238, 0.8) 0%, rgba(63, 55, 201, 0.8) 100%);
+    }
+
+    .illustration-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .illustration h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .illustration p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    h2 {
+      color: var(--dark-color);
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+      animation: fadeIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .form-group:nth-child(1) { animation-delay: 0.1s; }
+    .form-group:nth-child(2) { animation-delay: 0.2s; }
+    .form-group:nth-child(3) { animation-delay: 0.3s; }
+    .form-group:nth-child(4) { animation-delay: 0.4s; }
+    .form-group:nth-child(5) { animation-delay: 0.5s; }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--dark-color);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background-color: #f8f9fa;
+    }
+
+    input:focus {
+      border-color: var(--accent-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+      background-color: white;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 42px;
+      cursor: pointer;
+      color: #adb5bd;
+      font-size: 18px;
+    }
+
+    .toggle-password:hover {
+      color: var(--dark-color);
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      animation: fadeIn 0.5s ease 0.6s forwards;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+    }
+
+    .login-link {
+      margin-top: 20px;
+      text-align: center;
+      color: #6c757d;
+      font-size: 14px;
+      animation: fadeIn 0.5s ease 0.7s forwards;
+    }
+
+    .login-link a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: var(--error-color);
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .form-group.error input {
+      border-color: var(--error-color);
+    }
+
+    .form-group.error .error-message {
+      display: block;
+    }
+
+    .success-message {
+      color: var(--success-color);
+      font-size: 14px;
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .illustration {
+        display: none;
+      }
+
+      .form-container {
+        padding: 30px;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h2>Create an Account</h2>
+      <form method="POST" id="registerForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" required />
+          <div class="error-message">Username must be at least 4 characters long</div>
+        </div>
+
+        <div class="form-group password-container">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" required />
+          <span class="toggle-password">👁️</span>
+          <div class="error-message">Password must be at least 8 characters long</div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your number" />
+        </div>
+
+        <div class="form-group">
+          <label for="profession">Profession</label>
+          <input type="text" id="profession" name="profession" placeholder="Your profession" required />
+        </div>
+
+        <div class="form-group">
+          <label for="organisation">Organization</label>
+          <input type="text" id="organisation" name="organisation" placeholder="Your organization" required />
+        </div>
+
+        <button type="submit" id="submitBtn">Sign Up</button>
+
+        <div class="success-message" id="successMessage">
+          Registration successful! Redirecting...
+        </div>
+      </form>
+
+      <p class="login-link">Already have an account? <a href="/login">Login</a></p>
+    </div>
+
+    <div class="illustration">
+      <div class="illustration-content">
+        <h2>Join our community</h2>
+        <p>Access exclusive features and connect with professionals in your field.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('registerForm');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const togglePassword = document.querySelector('.toggle-password');
+      const submitBtn = document.getElementById('submitBtn');
+      const successMessage = document.getElementById('successMessage');
+
+      togglePassword.addEventListener('click', function () {
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          togglePassword.textContent = '👁️';
+        } else {
+          passwordInput.type = 'password';
+          togglePassword.textContent = '👁️';
+        }
+      });
+
+      usernameInput.addEventListener('input', validateUsername);
+      passwordInput.addEventListener('input', validatePassword);
+
+      function validateUsername() {
+        const username = usernameInput.value.trim();
+        const isValid = username.length >= 4;
+
+        if (username === '') {
+          setError(usernameInput, 'Username is required');
+          return false;
+        } else if (!isValid) {
+          setError(usernameInput, 'Username must be at least 4 characters long');
+          return false;
+        } else {
+          removeError(usernameInput);
+          return true;
+        }
+      }
+
+      function validatePassword() {
+        const password = passwordInput.value.trim();
+        const isValid = password.length >= 8;
+
+        if (password === '') {
+          setError(passwordInput, 'Password is required');
+          return false;
+        } else if (!isValid) {
+          setError(passwordInput, 'Password must be at least 8 characters long');
+          return false;
+        } else {
+          removeError(passwordInput);
+          return true;
+        }
+      }
+
+      function setError(input, message) {
+        const formGroup = input.parentElement;
+        formGroup.classList.add('error');
+        formGroup.querySelector('.error-message').textContent = message;
+      }
+
+      function removeError(input) {
+        const formGroup = input.parentElement;
+        formGroup.classList.remove('error');
+      }
+    });
+  </script>
+</body>
+</html>

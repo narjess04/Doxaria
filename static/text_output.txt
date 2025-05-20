@@ -1,0 +1,6 @@
+Position: (662, 252), (1148, 335) - Texte: Aouniaki
+Position: (521, 1131), (994, 1238) - Texte: malk own .
+Position: (512, 463), (836, 543) - Texte: microists .
+Position: (631, 336), (977, 412) - Texte: " #
+Position: (773, 531), (1082, 629) - Texte: albatrition .
+Position: (527, 338), (688, 407) - Texte: sho

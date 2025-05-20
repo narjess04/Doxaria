@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediTrust - Fraud detction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --accent: #4895ef;
+      --success: #4cc9f0;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --danger: #f72585;
+      --warning: #f8961e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      background-color: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 650px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--success));
+    }
+
+    h1 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-size: 2.2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+
+    .upload-area {
+      border: 3px dashed #ddd;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      transition: all 0.3s ease;
+      position: relative;
+      background-color: #fafafa;
+    }
+
+    .upload-area:hover {
+      border-color: var(--accent);
+      background-color: #f5f9ff;
+    }
+
+    .upload-area.active {
+      border-color: var(--success);
+      background-color: rgba(76, 201, 240, 0.05);
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .upload-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .upload-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .upload-text {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .upload-hint {
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    #preview {
+      max-width: 100%;
+      max-height: 350px;
+      margin: 1.5rem auto;
+      display: none;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid #eee;
+    }
+
+    .btn {
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn i {
+      margin-right: 8px;
+    }
+
+    #result {
+      margin-top: 2rem;
+      padding: 1.2rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      display: none;
+    }
+
+    .result-success {
+      background-color: rgba(76, 201, 240, 0.1);
+      color: var(--secondary);
+      border-left: 4px solid var(--success);
+    }
+
+    .result-danger {
+      background-color: rgba(247, 37, 133, 0.1);
+      color: var(--danger);
+      border-left: 4px solid var(--danger);
+    }
+
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+<a href="{{ url_for('home') }}" class="navbar-brand" style="font-size: 2rem; font-weight: 700;">
+  MediTrust
+</a>
+
+  <div class="container">
+    <h1>Fraud Detection</h1>
+    
+    <div class="upload-area" id="uploadArea">
+      <input type="file" accept="image/*" id="imageInput" class="file-input" onchange="previewImage(event)">
+      <label for="imageInput" class="upload-label">
+        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+        <span class="upload-text">Choose an image or drag and drop</span>
+        <span class="upload-hint">Supported formats: JPG, PNG, JPEG (Max. 5MB)</span>
+      </label>
+    </div>
+    
+    <img id="preview" alt="Aperçu de l'image" />
+    
+    <button class="btn" onclick="analyzeImage()">
+      <i class="fas fa-search"></i> Analyze the image
+    </button>
+    
+    <div id="result"></div>
+    
+    <footer>
+      Fraud detection &copy; 2025
+    </footer>
+  </div>
+
+  <script>
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('imageInput');
+    
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      uploadArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      uploadArea.addEventListener(eventName, () => uploadArea.classList.add('active'), false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      uploadArea.addEventListener(eventName, () => uploadArea.classList.remove('active'), false);
+    });
+
+    uploadArea.addEventListener('drop', e => {
+      const dt = e.dataTransfer;
+      fileInput.files = dt.files;
+      previewImage({ target: fileInput });
+    });
+
+    function previewImage(event) {
+      const input = event.target;
+      const preview = document.getElementById('preview');
+      const result = document.getElementById('result');
+      result.style.display = 'none';
+
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = e => {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function analyzeImage() {
+      const file = fileInput.files[0];
+      const result = document.getElementById('result');
+
+      if (!file) {
+        alert("Please select an image!");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      result.className = '';
+      result.style.display = 'block';
+      result.innerHTML = '<div class="loading"></div> Analysis in progress...';
+
+      fetch('/predict', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        result.innerHTML = data.result;
+        if (data.result.toLowerCase().includes("fraud")) {
+          result.classList.add('result-danger');
+        } else {
+          result.classList.add('result-success');
+        }
+      })
+      .catch(error => {
+        console.error('Erreur:', error);
+        result.innerHTML = "An error has occurred.";
+        result.classList.add('result-danger');
+      });
+    }
+  </script>
+
+</body>
+</html>

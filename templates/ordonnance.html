@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ordonnances</title>
+</head>
+<body>
+<h1>Liste des ordonnances</h1>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Docteur</th>
+        <th>Texte OCR</th>
+        <th>Temps</th>
+        <th>Image</th>
+    </tr>
+    {% for o in ordonnances %}
+    <tr>
+        <td>{{ o.id }}</td>
+        <td>{{ o.doctor_name }}</td>
+        <td><pre>{{ o.ocr_text }}</pre></td>
+        <td>{{ o.time }}</td>
+        <td><img src="{{ url_for('uploaded_file', filename=o.image) }}" width="150"></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

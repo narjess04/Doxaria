@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwritten Extraction</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3f7;
+            --light-gray: #f5f7fa;
+            --dark-gray: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .left, .right {
+            flex: 1;
+            min-width: 300px;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        form {
+            margin-top: 20px;
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 90%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px dashed #ccc;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: border 0.3s;
+        }
+
+        input[type="file"]:hover {
+            border-color: var(--accent-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+.navbar {
+    width: 100%;
+    background-color: white;
+    padding: 15px 30px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.navbar-brand img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar-toggler {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-left: auto; /* Ajout pour aligner à droite */
+}
+
+.nav-item {
+    margin: 0 10px;
+}
+
+.nav-link {
+    color: var(--dark-gray);
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Responsive navbar */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+        background-color: white;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        display: none;
+        box-shadow: var(--box-shadow);
+        margin-left: 0; /* Réinitialiser pour mobile */
+    }
+
+    .navbar-nav.show {
+        display: flex;
+    }
+
+    .navbar-toggler {
+        display: block;
+        cursor: pointer;
+    }
+}
+
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <a class="navbar-brand" href="#">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MediTrust Logo">
+        MediTrust
+    </a>
+    <button class="navbar-toggler">
+        <span class="navbar-toggler-icon">☰</span>
+    </button>
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="{{ url_for('home') }}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('fraud') }}">Fraud</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('extract_all') }}">Extraction</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Classification</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Chatbot</a></li>
+        <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('index') }}">Log out</a></li>
+    </ul>
+</nav>
+    <h1>Handwritten Extracting</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required accept="image/*">
+        <button type="submit">Analyse</button>
+    </form>
+
+    {% if image_url %}
+    <div class="container">
+        <div class="left">
+            <h3>Initial image</h3>
+            <img src="{{ url_for('uploaded_file', filename=original) }}" alt="Initial image">
+        </div>
+        <div class="right">
+            <h3>Final image</h3>
+            <img src="{{ image_url }}" alt="Result">
+        </div>
+    </div>
+    {% endif %}
+
+</body>
+</html>

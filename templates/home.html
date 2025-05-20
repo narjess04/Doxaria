@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Meditrust Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --text-light: #fff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: var(--text-light);
+        }
+
+        header {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header a:hover {
+            opacity: 0.9;
+            transition: opacity 0.2s ease;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            opacity: 0.5;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .description {
+            margin: 40px auto;
+            text-align: center;
+            max-width: 700px;
+            font-size: 18px;
+            color: var(--text-color);
+            padding: 0 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        body.dark-mode .description {
+            color: var(--text-light);
+        }
+
+        .grid-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin: 50px auto;
+            max-width: 1100px;
+            padding: 0 20px;
+        }
+
+        .grid-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .box {
+            background-color: white;
+            border: none;
+            border-radius: 12px;
+            width: 240px;
+            height: 200px;
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-decoration: none;
+            color: var(--text-color);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease;
+            animation-fill-mode: both;
+        }
+
+        body.dark-mode .box {
+            background-color: #2d2d2d;
+            color: var(--text-light);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .box:nth-child(1) { animation-delay: 0.2s; }
+        .box:nth-child(2) { animation-delay: 0.4s; }
+        .box:nth-child(3) { animation-delay: 0.6s; }
+        .box:nth-child(4) { animation-delay: 0.8s; }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode .box:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .box i {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .box:hover i {
+            transform: scale(1.2);
+            color: var(--secondary-color);
+        }
+
+        .box h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .box h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .box:hover h3::after {
+            width: 80px;
+        }
+
+        .box p {
+            font-size: 14px;
+            line-height: 1.5;
+            opacity: 0.8;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .contact-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-row {
+                gap: 20px;
+            }
+
+            .box {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/">
+            <h1>Welcome to Meditrust</h1>
+        </a>
+    </header>
+
+    <p class="description">Please select one of the options below to explore our platform features.</p>
+
+    <div class="grid-container">
+        <div class="grid-row">
+            <a href="/fraud" class="box">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Fraud Detection</h3>
+                <p>Identify suspicious activities using intelligent algorithms and advanced predictive models.</p>
+            </a>
+            <a href="/extract" class="box">
+                <i class="fas fa-database"></i>
+                <h3>Data Extraction</h3>
+                <p>Extract data from medical documents with high accuracy and efficiency.</p>
+            </a>
+        </div>
+        <div class="grid-row">
+            <a href="/classify" class="box">
+                <i class="fas fa-tags"></i>
+                <h3>Patient Classification</h3>
+                <p>Classify patients based on the seriousness of their medical condition.</p>
+            </a>
+            <a href="/chatbot" class="box">
+                <i class="fas fa-comments"></i>
+                <h3>AI Chatbot</h3>
+                <p>Interact with our intelligent assistant for medical queries and support.</p>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>Contact us at: <a href="mailto:contact@meditruct.com" class="contact-link">contact@meditruct.com</a></p>
+            <p class="copyright">© 2025 Meditrust Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle dark mode
+        const themeToggle = document.createElement('button');
+        themeToggle.className = 'theme-toggle';
+        themeToggle.id = 'themeToggle';
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+
+        const header = document.querySelector('header');
+        header.appendChild(themeToggle);
+
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        // Check for saved user preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Add animation on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const boxes = document.querySelectorAll('.box');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = `fadeInUp 0.5s ease forwards`;
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            boxes.forEach(box => {
+                observer.observe(box);
+            });
+        });
+    </script>
+</body>
+</html>

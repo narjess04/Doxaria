@@ -1,0 +1,6 @@
+text 0.78 188 1149 1735 1317 : Difficultors dis apprenticeses .
+text 0.76 126 679 1389 839 : A Habiba Ben Yedden .
+text 0.74 25 1348 1710 1501 : Difficultes . ' a # provision .
+text 0.71 140 860 1578 1006 : Four Noncef Ben Romdhane
+text 0.40 185 1008 1049 1131 : WISCAN #
+text 0.26 169 1014 1663 1145 : WISCFV #

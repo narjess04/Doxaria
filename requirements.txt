@@ -1,0 +1,11 @@
+flask
+opencv-python
+torch
+ultralytics
+matplotlib
+pytesseract
+scikit-learn
+easyocr
+opencv-python-headless
+transformers
+sentencepiece

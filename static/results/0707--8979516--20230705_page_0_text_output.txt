@@ -1,0 +1,8 @@
+Position: (523, 464), (1073, 547) - Texte: 15 910 4 7 121011
+Position: (741, 255), (1244, 333) - Texte: iLel wie
+Position: (621, 1130), (1479, 1267) - Texte: Hashoun Koothere
+Position: (689, 332), (1086, 412) - Texte: 1 29 2 2 4 6
+Position: (585, 321), (1093, 411) - Texte: 10:00AM
+Position: (854, 543), (1134, 637) - Texte: 80 2
+Position: (798, 336), (1099, 406) - Texte: . . . . . . . . . . . . . . . . . . . .
+Position: (629, 1133), (1440, 1228) - Texte: . ..

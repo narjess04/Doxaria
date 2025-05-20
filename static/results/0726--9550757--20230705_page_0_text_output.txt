@@ -1,0 +1,7 @@
+Position: (703, 1125), (1148, 1222) - Texte: Bildl Swiss
+Position: (871, 248), (1335, 332) - Texte: ww gull, 10
+Position: (1148, 536), (1367, 626) - Texte: Aolt
+Position: (665, 321), (1095, 409) - Texte: 02477 796
+Position: (838, 1217), (987, 1299) - Texte: 1946
+Position: (584, 1217), (984, 1304) - Texte: - for
+Position: (782, 332), (1099, 402) - Texte: . . . . . . . . . . . . . . . . . . . .

@@ -1,0 +1,7 @@
+Position: (710, 233), (1384, 320) - Texte: EN WATO D
+Position: (500, 1121), (1259, 1233) - Texte: 11 - Bournerg Sindg
+Position: (930, 526), (1133, 607) - Texte: 1109
+Position: (668, 310), (1081, 387) - Texte: 0632 506
+Position: (718, 324), (1097, 392) - Texte: . ..
+Position: (702, 242), (1398, 348) - Texte: CAMEL LIGHTS
+Position: (725, 239), (1269, 312) - Texte: . ..

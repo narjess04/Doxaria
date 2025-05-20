@@ -1,0 +1,8 @@
+Position: (489, 458), (1050, 545) - Texte: 1548695109
+Position: (595, 1132), (1431, 1277) - Texte: Hiden Rcluff
+Position: (522, 326), (1023, 409) - Texte: 04 63 5 2 93
+Position: (551, 252), (1377, 327) - Texte: BEN CHEDLI HICHEM
+Position: (916, 534), (1118, 629) - Texte: 686
+Position: (726, 257), (1359, 329) - Texte: . . . . . . . . . . . . . . . . . . . .
+Position: (915, 258), (1362, 332) - Texte: . . . . . . . . . . . . . . . . . . . .
+Position: (553, 254), (967, 327) - Texte: . ..
